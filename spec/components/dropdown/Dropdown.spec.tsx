@@ -532,4 +532,23 @@ describe('Dropdown component test suite =>', () => {
     });
   });
 
+  describe('when there are several options with same value', () => {
+    it('should select only one option', () => {
+      const options: LabelValue[] = [
+        { label: 'Option 1', value: '1' },
+        { label: 'Option 2', value: '1' },
+        { label: 'Option 3 ', value: '1' },
+      ];
+      
+      render(<Dropdown options={options}/>);
+      const input = screen.getByRole('textbox');
+      userEvent.click(input);
+      userEvent.click(screen.getByText('Option 1'));
+      userEvent.click(input);
+      // First reference is the selected option on the input
+      expect(screen.getAllByText('Option 1')[1].classList.contains('tk-select__option--is-selected')).toBeTruthy();
+      expect(screen.getByText('Option 2').classList.contains('tk-select__option--is-selected')).toBeFalsy();
+      expect(screen.getByText('Option 3').classList.contains('tk-select__option--is-selected')).toBeFalsy();
+    }); 
+  });
 });

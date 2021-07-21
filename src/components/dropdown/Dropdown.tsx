@@ -236,7 +236,7 @@ export class Dropdown<T = LabelValue> extends React.Component<
 
   handleIsOptionSelected = this.props.isOptionSelected
     ? (option: any) => this.props.isOptionSelected(option.data)
-    : undefined;
+    :  (option: DropdownOption<T>, selectValue: any) => selectValue?.some(i => i === option);
 
   get internalOptions() {
     if (this.props?.options) {

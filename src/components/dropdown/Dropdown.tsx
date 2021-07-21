@@ -324,7 +324,6 @@ export class Dropdown<T = LabelValue> extends React.Component<
             valueContainer: provided => ({
               ...provided,  maxHeight:`${maxHeight}px`})
           }}
-          // isOptionSelected={(option, selectValue) => selectValue.some(i => i === option)}
           parentInstance={this}
           ref={this.myRef}
           selectRef={this.myRef}
